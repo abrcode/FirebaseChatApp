@@ -108,10 +108,6 @@ extension LoginVC {
     }
     
     @objc private func didTapRegister(){
-//        let vc = RegistrationVC()
-//        vc.title = "Create Account"
-//        navigationController?.pushViewController(vc, animated: true)
-//        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let registrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
         navigationController?.pushViewController(registrationVC, animated: true)
