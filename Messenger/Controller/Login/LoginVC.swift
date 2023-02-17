@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
     
@@ -94,6 +95,25 @@ extension LoginVC {
             return
         }
         
+        //Firebase Login
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: pwd) { authResult , error in
+        
+            guard let result = authResult , error == nil else {
+                print("Error with login :\(error?.localizedDescription)")
+                let alertController = UIAlertController(title: "Error", message: "\(error?.localizedDescription)", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true)
+                return
+            }
+            
+            let user = result.user
+            
+            print("Loggedin User :\(user )")
+            
+            
+        }
         
     }
 
@@ -108,10 +128,6 @@ extension LoginVC {
     }
     
     @objc private func didTapRegister(){
-//        let vc = RegistrationVC()
-//        vc.title = "Create Account"
-//        navigationController?.pushViewController(vc, animated: true)
-//        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let registrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
         navigationController?.pushViewController(registrationVC, animated: true)
