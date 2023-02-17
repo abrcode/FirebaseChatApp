@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegistrationVC: UIViewController {
 
@@ -135,8 +136,16 @@ extension RegistrationVC {
             return
         }
         
-        // complete process
-        
+        // complete process For Firebase Signup
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: pwd) { authResult , error in
+            guard let result = authResult, error == nil else {
+                print("Error at the time of Creation :\(error?.localizedDescription)")
+                return
+            }
+            
+             let user = result.user
+            print("Create User Data: \(user)")
+        }
     }
     
 }
