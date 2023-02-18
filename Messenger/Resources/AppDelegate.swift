@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Use Firebase library to configure APIs
         FirebaseApp.configure()
-        
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "ConversationsVC")
-        
+
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         

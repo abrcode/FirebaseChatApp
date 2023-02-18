@@ -77,8 +77,8 @@ extension LoginVC {
     }
     
     
-    func alertLoginError(){
-        let alertController = UIAlertController(title: "Whoops...!", message: "Please enter all information to Log in.", preferredStyle: .alert)
+    func alertLoginError(msg : String = "Please enter all information to Log in."){
+        let alertController = UIAlertController(title: "Whoops...!", message: msg, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
@@ -97,21 +97,33 @@ extension LoginVC {
         
         //Firebase Login
         
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: pwd) { authResult , error in
-        
-            guard let result = authResult , error == nil else {
-                print("Error with login :\(error?.localizedDescription)")
-                let alertController = UIAlertController(title: "Error", message: "\(error?.localizedDescription)", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true)
+        DatabaseManager.shared.userExists(with: email) { [weak self] isExist in
+            guard let strongSelf = self else {
                 return
             }
             
-            let user = result.user
+            guard !isExist else {
+                // Already Exist
+                
+                strongSelf.alertLoginError(msg: "User with this email is already exist..!")
+                return
+            }
             
-            print("Loggedin User :\(user )")
+            FirebaseAuth.Auth.auth().signIn(withEmail: email, password: pwd) { authResult , error in
             
+              
+                guard let result = authResult , error == nil else {
+                    print("Error with login :\(error?.localizedDescription)")
+                    return
+                }
+                
+                let user = result.user
+                
+                print("Loggedin User :\(user )")
+                
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+                
+            }
             
         }
         

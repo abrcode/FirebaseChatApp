@@ -137,7 +137,12 @@ extension RegistrationVC {
         }
         
         // complete process For Firebase Signup
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: pwd) { authResult , error in
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: pwd) { [weak self] authResult , error in
+            
+            guard let strongSelf = self else {
+                return
+            }
+            
             guard let result = authResult, error == nil else {
                 print("Error at the time of Creation :\(error?.localizedDescription)")
                 return
@@ -145,6 +150,12 @@ extension RegistrationVC {
             
              let user = result.user
             print("Create User Data: \(user)")
+            
+            DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: fname,
+                                                                lastName: lname,
+                                                                emailAddress: email))
+            
+            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
     
