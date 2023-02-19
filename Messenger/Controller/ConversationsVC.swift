@@ -30,7 +30,7 @@ class ConversationsVC: UIViewController {
 //            UIApplication.shared.windows.first?.rootViewController = navigationController
 //            UIApplication.shared.windows.first?.makeKeyAndVisible()
             navigationController.modalPresentationStyle = .fullScreen
-            present(navigationController, animated: true)
+            present(navigationController, animated: false)
         }
         
     }
