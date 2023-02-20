@@ -29,13 +29,21 @@ PODS:
   - GoogleUtilities/Reachability (7.11.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (3.1.0)
+  - InputBarAccessoryView (5.5.0):
+    - InputBarAccessoryView/Core (= 5.5.0)
+  - InputBarAccessoryView/Core (5.5.0)
+  - JGProgressHUD (2.2)
   - leveldb-library (1.22.1)
+  - MessageKit (3.8.0):
+    - InputBarAccessoryView (~> 5.5.0)
   - PromisesObjC (2.2.0)
 
 DEPENDENCIES:
   - FirebaseAuth (~> 10.5)
   - FirebaseCore (~> 10.5)
   - FirebaseDatabase (~> 10.5)
+  - JGProgressHUD
+  - MessageKit
 
 SPEC REPOS:
   trunk:
@@ -45,7 +53,10 @@ SPEC REPOS:
     - FirebaseDatabase
     - GoogleUtilities
     - GTMSessionFetcher
+    - InputBarAccessoryView
+    - JGProgressHUD
     - leveldb-library
+    - MessageKit
     - PromisesObjC
 
 SPEC CHECKSUMS:
@@ -55,9 +66,12 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 149317118d3387b560d1b79c82d918288178f72e
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
+  InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
 
-PODFILE CHECKSUM: f9f94bd23cc9cdaa1cc4360b8e70d9e752e6fbc0
+PODFILE CHECKSUM: 3aa389d72307c4aa767671105c879cee422b7519
 
 COCOAPODS: 1.11.3

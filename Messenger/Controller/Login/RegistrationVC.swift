@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class RegistrationVC: UIViewController {
 
@@ -17,6 +18,10 @@ class RegistrationVC: UIViewController {
     @IBOutlet weak var imgViewAvatar: UIImageView!
     
     @IBOutlet weak var btnRegister: UIButton!
+    
+        // Variables
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,13 +141,19 @@ extension RegistrationVC {
             return
         }
         
+        spinner.show(in: view)
+        
         // complete process For Firebase Signup
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: pwd) { [weak self] authResult , error in
             
             guard let strongSelf = self else {
                 return
             }
-            
+             
+            DispatchQueue.main.sync {
+                strongSelf.spinner.dismiss()
+            }
+        
             guard let result = authResult, error == nil else {
                 print("Error at the time of Creation :\(error?.localizedDescription)")
                 return

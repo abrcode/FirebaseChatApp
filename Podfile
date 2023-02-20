@@ -10,6 +10,9 @@ target 'Messenger' do
   pod 'FirebaseCore', '~> 10.5'
   pod 'FirebaseAuth', '~> 10.5'
   pod 'FirebaseDatabase', '~> 10.5'
+  pod 'MessageKit'
+  pod 'JGProgressHUD' 
+ 
 
   target 'MessengerTests' do
     inherit! :search_paths

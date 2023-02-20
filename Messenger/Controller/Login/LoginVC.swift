@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class LoginVC: UIViewController {
     
@@ -17,6 +18,10 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var btnLogin: UIButton!
     
+    
+    //variables
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,9 +102,15 @@ extension LoginVC {
         
         //Firebase Login
         
+        spinner.show(in: view)
+        
         DatabaseManager.shared.userExists(with: email) { [weak self] isExist in
             guard let strongSelf = self else {
                 return
+            }
+            
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss()
             }
             
             guard !isExist else {
@@ -108,6 +119,9 @@ extension LoginVC {
                 strongSelf.alertLoginError(msg: "User with this email is already exist..!")
                 return
             }
+            
+            
+           
             
             FirebaseAuth.Auth.auth().signIn(withEmail: email, password: pwd) { authResult , error in
             
