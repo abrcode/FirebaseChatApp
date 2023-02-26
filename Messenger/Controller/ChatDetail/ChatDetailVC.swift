@@ -41,6 +41,8 @@ class ChatDetailVC: MessagesViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .red
         
+        
+        
         messages.append(Message(sender: selfSender,
                                 messageId: "1",
                                 sentDate: Date(),
@@ -61,6 +63,7 @@ class ChatDetailVC: MessagesViewController {
 extension ChatDetailVC {
     
     func setUpMsgCollectionView(){
+        messagesCollectionView.register(SenderTextMessageCVC.self)
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDataSource = self
@@ -81,6 +84,5 @@ extension ChatDetailVC : MessagesLayoutDelegate, MessagesDataSource , MessagesDi
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
-    
-    
+
 }

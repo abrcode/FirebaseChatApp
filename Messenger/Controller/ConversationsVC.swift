@@ -24,6 +24,7 @@ class ConversationsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(didTapComposeButton))
         self.setUpTable()
         self.initview()
         self.fetchConversation()
@@ -35,6 +36,12 @@ class ConversationsVC: UIViewController {
         self.validateUser()
     }
     
+    @objc private func didTapComposeButton(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let newConvVC = storyBoard.instantiateViewController(withIdentifier: "NewConversationVC") as! NewConversationVC
+        let navigationController = UINavigationController(rootViewController: newConvVC)
+        present(navigationController, animated: true)
+    }
 
 }
 
@@ -43,19 +50,14 @@ class ConversationsVC: UIViewController {
 extension ConversationsVC {
     
     func initview(){
-        
         self.tableView.isHidden = true
         self.lblNoConversation.isHidden =  true
-        
-        
     }
-    
-    
+
     func setUpTable(){
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         self.tableView.delegate = self
-        self.tableView.dataSource = self
-    
+        self.tableView.dataSource = self    
     }
     
     func fetchConversation(){

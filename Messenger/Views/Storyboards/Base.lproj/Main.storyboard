@@ -411,6 +411,50 @@
             </objects>
             <point key="canvasLocation" x="4364" y="86"/>
         </scene>
+        <!--New ConversationVC-->
+        <scene sceneID="DJ4-tm-X0J">
+            <objects>
+                <viewController storyboardIdentifier="NewConversationVC" id="jsZ-0A-8al" customClass="NewConversationVC" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l7O-BY-yBT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="X4T-jl-FVS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jsZ-0A-8al" id="b5R-ut-1XZ"/>
+                                    <outlet property="delegate" destination="jsZ-0A-8al" id="Bb0-lJ-FZG"/>
+                                </connections>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Results Found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I73-qf-BE0">
+                                <rect key="frame" x="10" y="439.5" width="394" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="37H-9v-Xkx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="37H-9v-Xkx" firstAttribute="trailing" secondItem="X4T-jl-FVS" secondAttribute="trailing" id="My6-9h-PHh"/>
+                            <constraint firstItem="37H-9v-Xkx" firstAttribute="trailing" secondItem="I73-qf-BE0" secondAttribute="trailing" constant="10" id="aZO-st-uYX"/>
+                            <constraint firstItem="37H-9v-Xkx" firstAttribute="bottom" secondItem="X4T-jl-FVS" secondAttribute="bottom" id="f7I-L0-7ZI"/>
+                            <constraint firstItem="X4T-jl-FVS" firstAttribute="leading" secondItem="37H-9v-Xkx" secondAttribute="leading" id="gNN-Td-ySA"/>
+                            <constraint firstItem="X4T-jl-FVS" firstAttribute="top" secondItem="37H-9v-Xkx" secondAttribute="top" id="sb7-jQ-daM"/>
+                            <constraint firstItem="I73-qf-BE0" firstAttribute="leading" secondItem="37H-9v-Xkx" secondAttribute="leading" constant="10" id="tPR-RB-xvx"/>
+                            <constraint firstItem="I73-qf-BE0" firstAttribute="centerY" secondItem="37H-9v-Xkx" secondAttribute="centerY" id="uvN-2P-Ms6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblNoResult" destination="I73-qf-BE0" id="hbp-7t-s6k"/>
+                        <outlet property="tableView" destination="X4T-jl-FVS" id="t1Q-qt-lwT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pd8-Rv-ef7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5268" y="91"/>
+        </scene>
     </scenes>
     <resources>
         <image name="avatar" width="512" height="512"/>
